@@ -35,11 +35,11 @@ def retrieve(method, *args, **kwargs):
                 # Retrieve the data
                 data = getattr(client, method)(*args, **kwargs)
 
-                # Show a download button
-                st.download_button("Download as CSV", data.to_csv(), file_name=f"{method.replace('query_', '')}.csv", mime="text/csv")
-
                 # Show a preview of the data as a line chart
                 st.line_chart(data=data)
+
+                # Show a download button
+                st.download_button("Download as CSV", data.to_csv(), file_name=f"{method.replace('query_', '')}.csv", mime="text/csv")
         except exceptions.NoMatchingDataError:
             st.error("There is no data available for this country in this time period")
             return
