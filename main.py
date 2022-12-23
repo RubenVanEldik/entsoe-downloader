@@ -22,7 +22,7 @@ st.sidebar.title("ENTSO-E Importer")
 entsoe_methods = [method for method in dir(client) if method.startswith("query_")]
 load_and_forecast_index = entsoe_methods.index("query_load_and_forecast")
 format_method_name = lambda method_name: method_name.replace("query_", "").replace("_", " ").capitalize()
-selected_method = st.sidebar.selectbox("Type of data", entsoe_methods, index=load_and_forecast_index, format_func=format_method_name)
+selected_method = st.sidebar.selectbox("Data type", entsoe_methods, index=load_and_forecast_index, format_func=format_method_name)
 
 # Create the header for the selected method
 st.header(format_method_name(selected_method))
