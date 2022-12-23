@@ -6,6 +6,9 @@ import streamlit as st
 
 import interface
 
+# Set the page config
+st.set_page_config(page_title="ENTSO-E Downloader", page_icon="⚡")
+
 # Initialize the ENTSOE Pandas client
 load_dotenv(".env")
 if not getenv("ENTSOE_KEY"):
