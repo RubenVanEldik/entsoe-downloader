@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 from entsoe import EntsoePandasClient
 from entsoe import exceptions
 from os import getenv
+import pandas as pd
 import streamlit as st
 
 import interface
@@ -39,7 +40,10 @@ def retrieve(method, *args, **kwargs):
                 data = getattr(client, method)(*args, **kwargs)
 
                 # Show a preview of the data as a line chart
-                st.line_chart(data=data)
+                chart_data = data.copy()
+                if isinstance(chart_data, pd.DataFrame) and isinstance(chart_data.columns, pd.MultiIndex):
+                    chart_data.columns = chart_data.columns.map(" - ".join)
+                st.line_chart(data=chart_data)
 
                 # Show a download button
                 st.download_button("Download as CSV", data.to_csv(), file_name=f"{method.replace('query_', '')}.csv", mime="text/csv")
