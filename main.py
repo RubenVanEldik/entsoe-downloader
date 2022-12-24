@@ -4,6 +4,7 @@ from entsoe import exceptions
 from os import getenv
 import pandas as pd
 import streamlit as st
+import xmltodict
 
 import interface
 
@@ -60,7 +61,10 @@ def retrieve(method, *args, **kwargs):
             st.error("Invalid page")
             return
         except Exception as e:
-            if hasattr(e, "response") and hasattr(e.response, "reason"):
+            if hasattr(e, "response") and hasattr(e.response, "text"):
+                response = xmltodict.parse(e.response.text)
+                st.error(response["Acknowledgement_MarketDocument"]["Reason"]["text"])
+            elif hasattr(e, "response") and hasattr(e.response, "reason"):
                 st.error(e.response.reason)
             else:
                 st.error("Something went wrong...")
