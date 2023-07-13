@@ -125,7 +125,10 @@ def run():
                 chart_data = data.copy()
                 if isinstance(chart_data, pd.DataFrame) and isinstance(chart_data.columns, pd.MultiIndex):
                     chart_data.columns = chart_data.columns.map(" - ".join)
-                st.line_chart(data=chart_data)
+                try:
+                    st.line_chart(data=chart_data)
+                except:
+                    st.warning("Could not generate the graph")
 
                 # Show a download button
                 st.download_button("Download as CSV", data.to_csv(), file_name=f"{selected_query.replace('query_', '')}.csv", mime="text/csv")
