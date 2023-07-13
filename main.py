@@ -19,7 +19,7 @@ QUERY_OPTIONS = {
     "query_generation_forecast": ["date_range", "country"],
     "query_generation_import": ["date_range", "country"],
     "query_generation_per_plant": ["date_range", "country", "psr_type"],
-    "query_imbalance_prices": ["date_range", "country", "psr_type"],
+    "query_imbalance_prices": ["date_range", "country"],
     "query_imbalance_volumes": ["date_range", "country"],
     "query_import": ["date_range", "country"],
     "query_installed_generation_capacity": ["date_range", "country", "psr_type"],
