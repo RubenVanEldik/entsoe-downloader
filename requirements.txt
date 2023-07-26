@@ -12,7 +12,7 @@ decorator==5.1.1
 entrypoints==0.4
 entsoe-py==0.5.9
 gitdb==4.0.10
-GitPython==3.1.29
+GitPython==3.1.30
 idna==3.4
 importlib-metadata==5.1.0
 importlib-resources==5.10.1
